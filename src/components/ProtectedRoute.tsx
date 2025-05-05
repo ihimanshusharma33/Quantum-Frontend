@@ -9,8 +9,6 @@ interface ProtectedRouteProps {
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   const { authState, loading } = useAuth();
 
-  // Bypass authentication for design purposes
-  const bypassAuth = true;
 
   if (loading) {
     return (
@@ -21,7 +19,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   }
 
   // Allow access even if not authenticated when bypass is enabled
-  if (!authState.isAuthenticated && !bypassAuth) {
+  if (!authState.isAuthenticated ) {
     return <Navigate to="/login" replace />;
   }
 
